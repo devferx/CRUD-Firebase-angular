@@ -40,7 +40,7 @@ export class HeroeComponent implements OnInit {
     if (this.idN == "nuevo") {
       this._heroeService.nuevoHeroe(this.heroe).subscribe(data => {
         //convertimos de string a JSON
-        this.id = JSON.parse(data._body).name;
+        this.id = JSON.parse(data["_body"]).name;
         this.router.navigate(["/heroe", this.id]);
       });
     } else {
@@ -52,8 +52,8 @@ export class HeroeComponent implements OnInit {
     }
   }
 
-  agregarNuevo(form: NgForm){
-    this.router.navigate(['/heroe','nuevo']);
+  agregarNuevo(form: NgForm) {
+    this.router.navigate(["/heroe", "nuevo"]);
     form.reset({
       casa: "Marvel"
     });

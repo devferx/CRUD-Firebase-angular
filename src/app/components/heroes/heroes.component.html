@@ -2,7 +2,9 @@
 <hr />
 <div class="row animated fadeIn fast">
   <div class="col-md-12 text-right">
-    <button [routerLink]="['/heroe','nuevo']" class="btn btn-outline-primary">Nuevo Heroe</button>
+    <button [routerLink]="['/heroe', 'nuevo']" class="btn btn-outline-primary">
+      Nuevo Heroe
+    </button>
   </div>
 </div>
 <br />
@@ -19,23 +21,30 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let k of heroes | keys; let i = index;">
-            <th>{{i + 1}}</th>
-            <td>{{heroes[k].nombre}}</td>
-            <td>{{heroes[k].casa}}</td>
+          <tr *ngFor="let k of heroes | keys; let i = index">
+            <th>{{ i + 1 }}</th>
+            <td>{{ heroes[k].nombre }}</td>
+            <td>{{ heroes[k].casa }}</td>
             <td class="text-right">
               <button
-              [routerLink]="['/heroe',k]"
-              class="btn btn-outline-success">Editar</button>
-              <button
-              (click)="borrarHeroe(k)"
-              class="btn btn-outline-danger">borrar</button>
+                [routerLink]="['/heroe', k]"
+                class="btn btn-outline-success"
+              >
+                Editar
+              </button>
+              <button (click)="borrarHeroe(k)" class="btn btn-outline-danger">
+                borrar
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
-      <div *ngIf="(heroes | keys).length === 0 && !loading" class="alert alert-info" role="alert">
-        <strong>No hay</strong> registros que mostros
+      <div
+        *ngIf="(heroes | keys).length === 0 && !loading"
+        class="alert alert-info"
+        role="alert"
+      >
+        <strong>No hay</strong> registros que mostrar 🙁
       </div>
       <div *ngIf="loading" class="alert alert-warning">
         <strong>Cargando...</strong> por favor espere

@@ -1,45 +1,41 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import { Heroe } from '../interfaces/heroe';
+import { Injectable } from "@angular/core";
+import { Http, Headers } from "@angular/http";
+import { Heroe } from "../interfaces/heroe";
+import { environment } from "./../../environments/environment.prod";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class HeoesService {
-  heroesUrl =  "https://heroesapp-3272e.firebaseio.com/heroes.json"
-  heroeUrl =  "https://heroesapp-3272e.firebaseio.com/heroes/"
-  constructor(private http: Http) { }
+  heroesUrl = environment.heroesUrl;
+  heroeUrl = environment.heroeUrl;
+  constructor(private http: Http) {}
 
-
-  nuevoHeroe(heroe: Heroe){
+  nuevoHeroe(heroe: Heroe) {
     const body = JSON.stringify(heroe);
     const headers = new Headers({
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     });
-    return this.http.post(this.heroesUrl, body, {headers: headers});
+    return this.http.post(this.heroesUrl, body, { headers: headers });
   }
 
-
-
-
-  ActualizarHeroe(heroe: Heroe, key$:string){
+  ActualizarHeroe(heroe: Heroe, key$: string) {
     const body = JSON.stringify(heroe);
     const headers = new Headers({
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     });
-    let url = `${this.heroeUrl}/${key$}.json`
-    return this.http.put(url, body, {headers: headers});
-  }
-
-
-  getHeroe (key$:string){
     let url = `${this.heroeUrl}/${key$}.json`;
-    return this.http.get (url);
+    return this.http.put(url, body, { headers: headers });
   }
-  getHeroes (){
-    return this.http.get (this.heroesUrl);
+
+  getHeroe(key$: string) {
+    let url = `${this.heroeUrl}/${key$}.json`;
+    return this.http.get(url);
   }
-  borrarHeroe(key$:string){
-    let url = `${this.heroeUrl}/${key$}.json`
-    return this.http.delete (url);
+  getHeroes() {
+    return this.http.get(this.heroesUrl);
+  }
+  borrarHeroe(key$: string) {
+    let url = `${this.heroeUrl}/${key$}.json`;
+    return this.http.delete(url);
   }
 }
